@@ -4,32 +4,458 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>home</title>
+    <script src="js/jquery.js"></script>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/space-border.css">
+    <style>
+        a{text-decoration: none;}
+    </style>
+
+    <!-- Header! -->
+    <style>
+        #header{
+            position: relative;
+        }
+        #header>#title_log{
+            text-align: center;
+        }
+        #header>#gnb_top_container{
+            height: 30px;
+            line-height: 30px;
+            position: absolute;
+            padding: 0 10px;
+            right: 20px;
+            top: 0;
+        }
+        #header>#gnb_top_container>a{
+            margin: 0 10px;
+        }
+
+        #header>#gnb_bottom_container{
+            text-align: center;
+        }
+
+        #header>#gnb_bottom_container>.main-menu{
+            display: flex;
+            justify-content: center;
+            margin: 0 auto;
+        }
+
+        .main-menu>li{
+            position: relative;
+        }
+        .main-menu>li>a{
+            display: block;
+            padding: 15px 20px;
+        }
+
+        .sub-menu{
+            position: absolute;
+            left: 0;
+            top: 100%;
+            width: 200px;
+            display:none;
+            z-index: 10;
+        }
+
+        .sub-menu>li>a{
+            display: block;
+            padding: 10px;
+        }
+    </style>
+
+    <!-- Content! -->
+     <style>
+        #wrap{
+            text-align: center;
+        }
+        #slider_container,#content_container{
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* Slider! */
+        #slider_container{
+            position: relative;
+        }
+        #slide_img_container{
+            margin: 0 auto;
+            overflow: hidden;
+            height: 300px;
+        }
+        #slide_img_container>ul{
+            display: flex;
+            position: relative;
+            transition: left 0.5s ease;
+            left: 0;
+        }
+        #slide_img_container>ul>li{
+            min-width: 100%;
+        }
+        #slide_img_container>ul>li>img{
+            width: 100%;
+        }
+
+        #slider_container>#slide_direct_btn_container{
+            position: absolute;
+            top: 33%;
+            width: 100%;
+        }
+
+        #slide_direct_btn_container>#slide_btn_left{
+            position: absolute;
+            left: 0;
+        }
+        #slide_direct_btn_container>#slide_btn_right{
+            position: absolute;
+            right: 0;
+        }
+
+        #slide_index_btn_container{
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 5px;
+        }
+        #slide_index_btn_container>.index_btn{
+            width: 10px;
+            height: 10px;
+            background-color: white;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        #slide_index_btn_container>.index_btn.active{
+            background-color: red;
+        }
+        /* Slider! */
+
+        /* Content! */
+        #content_container{
+            width: 100%;
+            min-width: 1200px;
+            position: relative;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+        #left_container{
+            float: left;
+            width: 20%;
+        }
+        #right_container{
+            float: right;
+            width: 75%;
+        }
+
+        #left_menu_box{
+            text-align: center;
+            font-size: 20px;
+        }
+        .left-menu-title{
+            font-size: 32px;
+            font-weight: 800;
+            text-align: center;
+        }
+        .left-menu{
+            font-size: 20px;
+            text-align: center;
+        }
+
+        #left_banner_box{
+            text-align: center;
+            font-size: 20px;
+        }
+
+        .left-banner-title{
+            display: block;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .left-banner{
+            font-size: 20px;
+            text-align: center;
+        }
+
+        .content-title{
+            font-size: 32px;
+            padding: 10px 30px;
+            border-bottom: 3px solid red;
+            text-align: left;
+        }
+
+        .album{
+            border-top: 1px solid green;
+        }
+
+        .album td{
+            padding: 5px;
+            border-bottom: 1px solid green;
+        }
+        /* Content! */
+     </style>
 </head>
 <body>
+
+    <!-- Header! -->
     <div id="header">
-        <div>><img src="" alt=""></div>
-        <div>
+        <div id="title_log"><img src="/images/logo.jpg" alt=""></div>
+        <div id="gnb_top_container">
             <a href="">Home</a>
             <a href="">Login</a>
             <a href="">Join</a>
             <a href="">Mypage</a>
         </div>
-        <div id="gnb_container">
-            
+        <div id="gnb_bottom_container">
+            <ul class="main-menu">
+                <li>
+                    <a href="">캠핑장소개</a>
+                    <ul class="sub-menu">
+                        <li><a href="">인사말</a></li>
+                        <li><a href="">시설보기</a></li>
+                        <li><a href="">오시는길</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="">사이트보기</a>
+                    <ul class="sub-menu">
+                        <li><a href="">시설물보기</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="">예약안내</a>
+                    <ul class="sub-menu">
+                        <li><a href="">예약안내</a></li>
+                        <li><a href="">실시간예약</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="">특별함</a>
+                    <ul class="sub-menu">
+                        <li><a href="">특별함</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="">인기여행지</a>
+                    <ul class="sub-menu">
+                        <li><a href="">인근여행지</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="">커뮤니티</a>
+                    <ul class="sub-menu">
+                        <li><a href="">공지사항</a></li>
+                        <li><a href="">고객문의</a></li>
+                        <li><a href="">이용후기</a></li>
+                        <li><a href="">포토갤러리</a></li>
+                    </ul>
+                </li>
+            </ul>
         </div>
+        
     </div>
+    <script>
+        function includeHTML(ctrl,page,callback){
+            $.get(page,function(data){
+                $('#'+ctrl).html(data);
+                if(callback){
+                    callback();
+                }
+            });
 
+            $(function(){
+                includeHTML('titleZonePage','titleZonePage.html',null);
+            });
+        }
+    </script>
     <!-- Content! -->
     <div id="wrap">
-        <div id="content">
 
+        <div id="slider_container">
+
+            <div id="slide_img_container">
+                <ul class="slide-panel">
+                    <li class="slide_img_box"><img src="/images/1.jpg" alt=""></li>
+                    <li class="slide_img_box"><img src="/images/2.jpg" alt=""></li>
+                    <li class="slide_img_box"><img src="/images/3.jpg" alt=""></li>
+                </ul>
+            </div>
+
+            <div id="slide_direct_btn_container">
+                <div id="slide_btn_left"><img src="images/left_btn.png" alt=""></div>
+                <div id="slide_btn_right"><img src="images/right_btn.png" alt=""></div>
+            </div>
+
+            <div id="slide_index_btn_container">
+                <div class="index_btn active" data-index="0"></div>
+                <div class="index_btn" data-index="1"></div>
+                <div class="index_btn"data-index="2"></div>
+            </div>
+        </div>
+
+        <div id="content_container">
+            <div id="left_container">
+                <div id="left_menu_box">
+                    <span class="left-menu-title">특별함</span>
+                    <ul class="left-menu">
+                        <li><a href="">특별함</a></li>
+                    </ul>
+                </div>
+                <div id="left_banner_box">
+                    <span class="left-banner-title">Customer Center</span>
+                    <ul class="left-banner">
+                        <li><a href="">070-123-4567</a></li>
+                        <li><a href="">농협 000-000-0000 <br> 홍길동</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div id="right_container">
+                <div class="content-title">특별함</div>
+                <div id="article" class="content">
+                    <h3>사계절 낭만이 있는 곳에서 행복한 추억을 많이 만들어 가세요</h3>
+                    <table class="album" style="width: 100%;">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <a href="#"><img src="/images/20151227165633_1192539526.jpg" width="200" height="120" alt=""></a>
+                                </td>
+                                <td>
+                                    <a href="#">
+                                        비가 오나 눈이 오나 걱정없는 실내 바비큐장에서 사계절 편안하게 드세요~본 내용은 샘플로 작성되었으며 추후에 관리자가 펜션에 맞게 직접 내용을 등록하실 수 있습니다.  감사합니다.
+                                        <div style="text-align:right">[<span style="color:#878787;font-size:12px;">작성일자 : 2015-12-27</span>, <span style="color:#878787;font-size:12px;">조회수 : 51</span>]</div>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="#"><img src="/images/20151227165633_1192539526.jpg" width="200" height="120" alt=""></a>
+                                </td>
+                                <td>
+                                    <a href="#">
+                                        비가 오나 눈이 오나 걱정없는 실내 바비큐장에서 사계절 편안하게 드세요~본 내용은 샘플로 작성되었으며 추후에 관리자가 펜션에 맞게 직접 내용을 등록하실 수 있습니다.  감사합니다.
+                                        <div style="text-align:right">[<span style="color:#878787;font-size:12px;">작성일자 : 2015-12-27</span>, <span style="color:#878787;font-size:12px;">조회수 : 51</span>]</div>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="#"><img src="/images/20151227165633_1192539526.jpg" width="200" height="120" alt=""></a>
+                                </td>
+                                <td>
+                                    <a href="#">
+                                        비가 오나 눈이 오나 걱정없는 실내 바비큐장에서 사계절 편안하게 드세요~본 내용은 샘플로 작성되었으며 추후에 관리자가 펜션에 맞게 직접 내용을 등록하실 수 있습니다.  감사합니다.
+                                        <div style="text-align:right">[<span style="color:#878787;font-size:12px;">작성일자 : 2015-12-27</span>, <span style="color:#878787;font-size:12px;">조회수 : 51</span>]</div>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 
     <!-- Footer! -->
-    <div id="footer">
-        
+    <style>
+        #addrZone{
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .addr{
+            color:#828282;
+            background-color: #E8E8E8;
+            font-size:14px;
+            overflow: hidden;
+        }
+        .addrinfo{
+            float: left;
+            display:inline;
+        }
+    </style>
+    <div id="addrZone">
+        <div class="addr">
+            <div class="addrinfo">
+                <h4>About Us</h4>
+                <address>상호명 : 000캠핑장&nbsp;&nbsp; 주소 : 경기도 00군 000읍 000-00 &nbsp;&nbsp; 전화번호 : <span
+                        class="eng_num bold">070-0000-0000</span><br>
+                    대표 : 000 &nbsp;&nbsp; 사업자번호 : <span class="eng_num bold">000-0000-0000</span> &nbsp;&nbsp; 통신판매업번호 :
+                    <span class="eng_num bold">000-0000-0000</span><br>
+                    개인정보책임자 : 000 &nbsp;&nbsp; 이메일 : <span class="eng_num bold">000000@0000.000</span>
+                </address>
+            </div>
+            <div class="addrinfo">
+                <h4>Customer</h4>
+                <address>전화번호 : <span class="eng_num bold">070-0000-0000</span> &nbsp;&nbsp; 휴대폰번호 : <span
+                        class="eng_num bold">010-0000-0000</span><br>
+                    계좌번호 : <span class="bold">농협</span> <span class="eng_num bold">000-0000-0000 000</span> <span
+                        class="bold">예금주 : 000</span></address>
+            </div>
+            <ul class="addrinfo">
+                <h4>SNS link</h4>
+                <li><a href="#" title="페이스북"><i class="fa fa-facebook-square fa-2x"></i></a></li>
+                <li><a href="#" title="유튜브"><i class="fa fa-youtube-square fa-2x"></i></a></li>
+                <li><a href="#" title="인스타그램"><i class="fa fa-instagram fa-2x"></i></a></li>
+            </ul>
+        </div>
     </div>
-    
+
+    <script>
+
+        const slidePanel = document.querySelector('.slide-panel');
+        // getElementsByClassName(text) '.' 안쓰고 className만!!!!
+        // const indexBtns = document.getElementsByClassName('.index_btn');
+        //querySelectorAll() 과 getElementsByClassName() 리턴 타입이 다른듯 forEach() 안됨
+        // const indexBtns = document.querySelectorAll('.index_btn');
+        const indexBtns = document.querySelectorAll('.index_btn');
+
+        let numCurrIndex = 0;
+
+        // main-menu hover event
+        $('#gnb_bottom_container>.main-menu>li>a').hover(function(){
+            $(this).next().css('display','block');
+        },function(){
+            $(this).next().css('display','none');
+        });
+
+        // slideImg event
+        function updateSlide(index){
+            slidePanel.style.left = `-${index*100}%`;
+            indexBtns.forEach(btn => btn.classList.remove('active'));
+            indexBtns[numCurrIndex].classList.add('active');
+        }
+
+
+        $('#slide_btn_left').on('click',()=>{
+            // console.log('btn_left!')
+            
+            if(numCurrIndex > 0){
+                numCurrIndex--;
+                updateSlide(numCurrIndex)
+            }
+        });
+
+        $('#slide_btn_right').on('click',()=>{
+            // console.log('btn_right!')
+
+            if(numCurrIndex < indexBtns.length-1){
+                numCurrIndex++;
+                updateSlide(numCurrIndex)
+            }
+        });
+
+        $('.index_btn').on('click',function(){
+            numCurrIndex = $(this).attr('data-index');
+            updateSlide(numCurrIndex);
+        })
+
+        setInterval(()=>{
+            numCurrIndex = (numCurrIndex+1)%indexBtns.length;
+            updateSlide(numCurrIndex)
+        },3000);
+    </script>    
 </body>
 </html>
